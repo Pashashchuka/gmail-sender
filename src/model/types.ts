@@ -8,3 +8,8 @@ export type MessageType = {
   type: 'success' | 'error';
   text: string;
 } | null;
+
+export interface ValidationErrors {
+  htmlContent?: string;
+  subject?: string;
+}

@@ -16,7 +16,8 @@ import {
 } from './constants';
 
 function App() {
-  const { formData, handleInputChange, clearForm } = useEmailForm();
+  const { formData, errors, handleInputChange, validateForm, clearForm } =
+    useEmailForm();
   const { isLoading, message, sendEmail, clearMessage } =
     useEmailSender(clearForm);
   const { showPreview, showCode, showPreviewMode } = usePreview();
@@ -24,6 +25,11 @@ function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
     await sendEmail(formData);
   };
 
@@ -47,14 +53,17 @@ function App() {
               {UI_TEXT.SUBJECT_LABEL}
             </label>
             <input
+              className={`${styles.input} ${errors.subject ? styles.inputError : ''}`}
               placeholder={FORM_PLACEHOLDERS.subject}
               onChange={handleInputChange}
               value={formData.subject}
-              className={styles.input}
               name="subject"
               id="subject"
               type="text"
             />
+            {errors.subject && (
+              <div className={styles.errorMessage}>{errors.subject}</div>
+            )}
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="htmlContent" className={styles.label}>
@@ -78,14 +87,13 @@ function App() {
             </div>
             {!showPreview ? (
               <textarea
+                className={`${styles.textarea} ${errors.htmlContent ? styles.textareaError : ''}`}
                 placeholder={FORM_PLACEHOLDERS.htmlContent}
                 onChange={handleInputChange}
                 value={formData.htmlContent}
-                className={styles.textarea}
                 rows={TEXTAREA_ROWS}
                 name="htmlContent"
                 id="htmlContent"
-                required
               />
             ) : (
               <div className={styles.previewContainer}>
@@ -98,6 +106,9 @@ function App() {
                   }}
                 />
               </div>
+            )}
+            {errors.htmlContent && (
+              <div className={styles.errorMessage}>{errors.htmlContent}</div>
             )}
           </div>
           <div className={styles.formActions}>
