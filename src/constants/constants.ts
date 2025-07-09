@@ -15,6 +15,8 @@ export const FORM_PLACEHOLDERS = {
 export const TEXTAREA_ROWS = 10;
 
 export const ERROR_MESSAGES = {
+  REQUIRED_HTML_CONTENT: 'Please enter HTML content to send an email.',
+  REQUIRED_SUBJECT: 'Please enter a subject for your email.',
   SEND_ERROR: 'Error sending email. Please try again.',
   PREVIEW_PLACEHOLDER:
     '<p style="color: #999;">Preview will appear here...</p>',

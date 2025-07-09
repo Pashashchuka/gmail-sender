@@ -6,8 +6,10 @@ import { EmailFormData, MessageType } from '../model';
 export const useEmailSender = (clearForm: () => void) => {
   const [message, setMessage] = useState<MessageType>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const sendEmail = async (formData: EmailFormData) => {
+    setIsClosing(false);
     setIsLoading(true);
     setMessage(null);
 
@@ -38,8 +40,18 @@ export const useEmailSender = (clearForm: () => void) => {
     }
   };
 
+  const clearMessage = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setMessage(null);
+      setIsClosing(false);
+    }, 300);
+  };
+
   return {
+    clearMessage,
     isLoading,
+    isClosing,
     sendEmail,
     message,
   };

@@ -51,6 +51,18 @@
   &:hover {
     border-color: $border-hover;
   }
+  
+  &.inputError,
+  &.textareaError {
+    border-color: $error-color;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+    background: rgba(239, 68, 68, 0.05);
+    
+    &:focus {
+      border-color: $error-color;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+    }
+  }
 }
 
 .textarea {
@@ -299,4 +311,39 @@
   &:nth-child(1) { animation-delay: 0.1s; }
   &:nth-child(2) { animation-delay: 0.2s; }
   &:nth-child(3) { animation-delay: 0.3s; }
+}
+
+.errorMessage {
+  color: $error-color;
+  font-size: $font-size-small;
+  font-weight: $font-weight-medium;
+  margin-top: $spacing-xs;
+  padding: $spacing-xs $spacing-sm;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: $border-radius-sm;
+  border-left: 3px solid $error-color;
+  @include fade-in;
+  animation: slideIn 0.3s ease-out;
+  
+  &::before {
+    content: '!';
+    margin-right: $spacing-xs;
+    font-size: $font-size-base;
+  }
+  
+  @include mobile {
+    font-size: 0.8rem;
+    padding: $spacing-xs;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
