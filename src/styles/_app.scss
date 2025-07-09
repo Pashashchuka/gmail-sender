@@ -137,6 +137,7 @@
   @include fade-in;
   @include glass-card;
   border: 1px solid transparent;
+  position: relative;
 
   &.success {
     background: $success-bg;
@@ -169,6 +170,44 @@
   @include mobile {
     padding: $spacing-md $spacing-lg;
     margin-top: $spacing-lg;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: $spacing-sm;
+  right: $spacing-sm;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  cursor: pointer;
+  padding: $spacing-xs;
+  border-radius: $border-radius-sm;
+  transition: $transition-base;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @include mobile {
+    top: $spacing-xs;
+    right: $spacing-xs;
+    font-size: $font-size-large;
+    width: 20px;
+    height: 20px;
   }
 }
 

@@ -38,7 +38,12 @@ export const useEmailSender = (clearForm: () => void) => {
     }
   };
 
+  const clearMessage = () => {
+    setMessage(null);
+  };
+
   return {
+    clearMessage,
     isLoading,
     sendEmail,
     message,

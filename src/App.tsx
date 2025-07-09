@@ -17,7 +17,8 @@ import {
 
 function App() {
   const { formData, handleInputChange, clearForm } = useEmailForm();
-  const { isLoading, message, sendEmail } = useEmailSender(clearForm);
+  const { isLoading, message, sendEmail, clearMessage } =
+    useEmailSender(clearForm);
   const { showPreview, showCode, showPreviewMode } = usePreview();
   const { copied, copyToClipboard } = useCopyToClipboard();
 
@@ -121,6 +122,14 @@ function App() {
           <div
             className={`${styles.message} ${message.type === 'success' ? styles.success : styles.error}`}
           >
+            <button
+              aria-label="Close notification"
+              className={styles.closeButton}
+              onClick={clearMessage}
+              type="button"
+            >
+              ×
+            </button>
             {message.text}
           </div>
         )}
