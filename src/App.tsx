@@ -1,7 +1,12 @@
 import React from 'react';
 
 import styles from './styles/App.module.scss';
-import { useEmailForm, useEmailSender, usePreview } from './hooks';
+import {
+  useCopyToClipboard,
+  useEmailSender,
+  useEmailForm,
+  usePreview,
+} from './hooks';
 import {
   FORM_PLACEHOLDERS,
   ERROR_MESSAGES,
@@ -14,6 +19,7 @@ function App() {
   const { formData, handleInputChange, clearForm } = useEmailForm();
   const { isLoading, message, sendEmail } = useEmailSender(clearForm);
   const { showPreview, showCode, showPreviewMode } = usePreview();
+  const { copied, copyToClipboard } = useCopyToClipboard();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,8 +118,22 @@ function App() {
           </div>
         )}
         <div className={styles.exampleSection}>
-          <h3 className={`app-h3 ${styles.exampleTitle}`}>{UI_TEXT.EXAMPLE_TITLE}</h3>
-          <pre className={`app-pre ${styles.exampleCode}`}>{EXAMPLE_HTML}</pre>
+          <h3 className={`app-h3 ${styles.exampleTitle}`}>
+            {UI_TEXT.EXAMPLE_TITLE}
+          </h3>
+          <div className={styles.exampleCodeContainer}>
+            <pre className={`app-pre ${styles.exampleCode}`}>
+              {EXAMPLE_HTML}
+            </pre>
+            <button
+              className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
+              title={copied ? UI_TEXT.COPIED_BUTTON : UI_TEXT.COPY_BUTTON}
+              onClick={() => copyToClipboard(EXAMPLE_HTML)}
+              type="button"
+            >
+              {copied ? '✓' : '📋'}
+            </button>
+          </div>
         </div>
       </main>
     </div>

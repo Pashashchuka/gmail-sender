@@ -32,8 +32,10 @@ export const UI_TEXT = {
   SENDING_BUTTON: 'Sending...',
   CLEAR_BUTTON: 'Clear Form',
   SUBJECT_LABEL: 'Subject:',
+  COPIED_BUTTON: 'Copied!',
   PREVIEW_TAB: 'Preview',
   TITLE: 'Gmail Sender',
+  COPY_BUTTON: 'Copy',
   CODE_TAB: 'Code',
   TO_LABEL: 'To:',
 } as const;
