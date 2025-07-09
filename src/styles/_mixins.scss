@@ -1,0 +1,255 @@
+@import './variables';
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+@mixin button-base {
+  border: none;
+  border-radius: $border-radius-md;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: $transition-base;
+  padding: $spacing-md $spacing-xl;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: $transition-base;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: linear-gradient(135deg, $gold-accent 0%, $gold-accent-hover 100%);
+  color: $primary-color;
+  box-shadow: $shadow-md;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: $bg-glass;
+  color: $text-primary;
+  border: 1px solid $glass-border;
+  backdrop-filter: $blur-md;
+  
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+}
+
+@mixin button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@mixin input-base {
+  padding: $spacing-md $spacing-lg;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-md;
+  font-size: $font-size-base;
+  transition: $transition-base;
+  font-family: $font-family-base;
+  background: $bg-glass;
+  color: $text-primary;
+  backdrop-filter: $blur-sm;
+  
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+@mixin input-focus {
+  outline: none;
+  border-color: $border-focus;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@mixin glass-effect {
+  background: $glass-bg;
+  border: 1px solid $glass-border;
+  backdrop-filter: $blur-md;
+  box-shadow: $glass-shadow;
+}
+
+@mixin glass-card {
+  @include glass-effect;
+  border-radius: $border-radius-lg;
+  padding: $spacing-xl;
+}
+
+@mixin neumorph {
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-neumorph;
+}
+
+@mixin neumorph-inset {
+  background: $bg-card;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-neumorph-inset;
+}
+
+@mixin fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@mixin slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@mixin scale-in {
+  animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@mixin pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin text-gradient {
+  background: linear-gradient(135deg, $gold-accent 0%, $gold-accent-hover 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@mixin text-glow {
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+@mixin hover-lift {
+  transition: $transition-base;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+  }
+}
+
+@mixin hover-glow {
+  transition: $transition-base;
+  
+  &:hover {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@mixin loading-shimmer {
+  background: linear-gradient(90deg, $bg-card 25%, $bg-glass 50%, $bg-card 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}

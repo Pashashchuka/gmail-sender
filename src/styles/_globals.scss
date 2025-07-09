@@ -1,0 +1,152 @@
+@import './variables';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $bg-dark;
+  color: $text-primary;
+  line-height: $line-height-base;
+  overflow-x: hidden;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $bg-card;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $border-color;
+    border-radius: 4px;
+    &:hover {
+      background: $text-muted;
+    }
+  }
+}
+
+.app-h1 {
+  font-size: $font-size-display;
+  @include text-gradient;
+  @include text-glow;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: -0.025em;
+}
+.app-h2 {
+  font-size: $font-size-xxxl;
+  color: $text-primary;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+}
+.app-h3 {
+  font-size: $font-size-xxl;
+  color: $text-secondary;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+}
+.app-p {
+  color: $text-secondary;
+  margin: 0;
+}
+.app-link {
+  text-decoration: none;
+  color: $text-accent;
+  transition: $transition-base;
+  &:hover {
+    color: $gold-accent-hover;
+    @include text-glow;
+  }
+}
+.app-code {
+  font-family: $font-family-mono;
+  background: $bg-card;
+  padding: 0.125rem 0.25rem;
+  border-radius: $border-radius-sm;
+  font-size: 0.875em;
+  color: $text-accent;
+}
+.app-pre {
+  font-family: $font-family-mono;
+  background: $bg-card;
+  padding: $spacing-lg;
+  border-radius: $border-radius-md;
+  overflow-x: auto;
+  border: 1px solid $border-color;
+  code {
+    background: none;
+    padding: 0;
+    color: $text-secondary;
+  }
+}
+.app-ul, .app-ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.app-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: $border-radius-sm;
+}
+
+::selection {
+  background: rgba(255, 215, 0, 0.3);
+  color: $text-primary;
+}
+::-moz-selection {
+  background: rgba(255, 215, 0, 0.3);
+  color: $text-primary;
+}
+
+*:focus {
+  outline: 2px solid $border-focus;
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.loading {
+  @include loading-shimmer;
+}
+.glass {
+  @include glass-effect;
+}
+.neumorph {
+  @include neumorph;
+}
+.fade-in {
+  @include fade-in;
+}
+.slide-up {
+  @include slide-up;
+}
+.scale-in {
+  @include scale-in;
+}
+.hover-lift {
+  @include hover-lift;
+}
+.hover-glow {
+  @include hover-glow;
+}

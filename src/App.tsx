@@ -1,0 +1,123 @@
+import React from 'react';
+
+import styles from './styles/App.module.scss';
+import { useEmailForm, useEmailSender, usePreview } from './hooks';
+import {
+  FORM_PLACEHOLDERS,
+  ERROR_MESSAGES,
+  TEXTAREA_ROWS,
+  EXAMPLE_HTML,
+  UI_TEXT,
+} from './constants';
+
+function App() {
+  const { formData, handleInputChange, clearForm } = useEmailForm();
+  const { isLoading, message, sendEmail } = useEmailSender(clearForm);
+  const { showPreview, showCode, showPreviewMode } = usePreview();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await sendEmail(formData);
+  };
+
+  return (
+    <div className={styles.app}>
+      <header className={styles.header}>
+        <h1 className={`app-h1 ${styles.title}`}>{UI_TEXT.TITLE}</h1>
+        <p className={`app-p ${styles.subtitle}`}>{UI_TEXT.SUBTITLE}</p>
+      </header>
+      <main className={styles.main}>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.formGroup}>
+            <label htmlFor="subject" className={styles.label}>
+              {UI_TEXT.SUBJECT_LABEL}
+            </label>
+            <input
+              placeholder={FORM_PLACEHOLDERS.subject}
+              onChange={handleInputChange}
+              value={formData.subject}
+              className={styles.input}
+              name="subject"
+              id="subject"
+              type="text"
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="htmlContent" className={styles.label}>
+              {UI_TEXT.HTML_CONTENT_LABEL}
+            </label>
+            <div className={styles.tabs}>
+              <button
+                className={`${styles.tabBtn} ${!showPreview ? styles.active : ''}`}
+                onClick={showCode}
+                type="button"
+              >
+                {UI_TEXT.CODE_TAB}
+              </button>
+              <button
+                className={`${styles.tabBtn} ${showPreview ? styles.active : ''}`}
+                onClick={showPreviewMode}
+                type="button"
+              >
+                {UI_TEXT.PREVIEW_TAB}
+              </button>
+            </div>
+            {!showPreview ? (
+              <textarea
+                placeholder={FORM_PLACEHOLDERS.htmlContent}
+                onChange={handleInputChange}
+                value={formData.htmlContent}
+                className={styles.textarea}
+                rows={TEXTAREA_ROWS}
+                name="htmlContent"
+                id="htmlContent"
+                required
+              />
+            ) : (
+              <div className={styles.previewContainer}>
+                <div
+                  className={styles.preview}
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      formData.htmlContent ||
+                      ERROR_MESSAGES.PREVIEW_PLACEHOLDER,
+                  }}
+                />
+              </div>
+            )}
+          </div>
+          <div className={styles.formActions}>
+            <button
+              className={styles.submitBtn}
+              disabled={isLoading}
+              type="submit"
+            >
+              {isLoading ? UI_TEXT.SENDING_BUTTON : UI_TEXT.SEND_BUTTON}
+            </button>
+            <button
+              className={styles.clearBtn}
+              disabled={isLoading}
+              onClick={clearForm}
+              type="button"
+            >
+              {UI_TEXT.CLEAR_BUTTON}
+            </button>
+          </div>
+        </form>
+        {message && (
+          <div
+            className={`${styles.message} ${message.type === 'success' ? styles.success : styles.error}`}
+          >
+            {message.text}
+          </div>
+        )}
+        <div className={styles.exampleSection}>
+          <h3 className={`app-h3 ${styles.exampleTitle}`}>{UI_TEXT.EXAMPLE_TITLE}</h3>
+          <pre className={`app-pre ${styles.exampleCode}`}>{EXAMPLE_HTML}</pre>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default App;

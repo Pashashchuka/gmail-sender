@@ -1,0 +1,302 @@
+@import './variables';
+@import './mixins';
+
+.form {
+  @include flex-column;
+  gap: $spacing-xl;
+  @include glass-card;
+  @include hover-lift;
+  margin-bottom: $spacing-xl;
+  
+  @include mobile {
+    gap: $spacing-lg;
+    padding: $spacing-lg;
+  }
+}
+
+.formGroup {
+  @include flex-column;
+  text-align: left;
+  gap: $spacing-sm;
+}
+
+.label {
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
+  font-size: $font-size-base;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  &::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: $gold-accent;
+    border-radius: 50%;
+    display: inline-block;
+  }
+}
+
+.input,
+.textarea {
+  @include input-base;
+  @include neumorph-inset;
+  
+  &:focus {
+    @include input-focus;
+    @include neumorph;
+  }
+  
+  &:hover {
+    border-color: $border-hover;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 150px;
+  font-family: $font-family-mono;
+  line-height: 1.6;
+  
+  @include mobile {
+    min-height: 120px;
+  }
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: $spacing-md;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  @include neumorph;
+  padding: $spacing-xs;
+  gap: $spacing-xs;
+  
+  @include mobile {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.tabBtn {
+  flex: 1;
+  padding: $spacing-md $spacing-lg;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  transition: $transition-base;
+  color: $text-secondary;
+  border-radius: $border-radius-md;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: $transition-base;
+  }
+  
+  &:hover {
+    color: $text-primary;
+    background: rgba(255, 255, 255, 0.05);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &.active {
+    background: linear-gradient(135deg, $gold-accent 0%, $gold-accent-hover 100%);
+    color: $primary-color;
+    box-shadow: $shadow-md;
+    font-weight: $font-weight-semibold;
+    
+    &::before {
+      display: none;
+    }
+  }
+  
+  @include mobile {
+    border-radius: $border-radius-sm;
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.previewContainer {
+  @include neumorph;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  min-height: 150px;
+  position: relative;
+  
+  @include mobile {
+    min-height: 120px;
+  }
+}
+
+.preview {
+  padding: $spacing-xl;
+  min-height: 150px;
+  background: $bg-glass;
+  text-align: left;
+  font-family: $font-family-base;
+  line-height: $line-height-base;
+  color: $text-primary;
+  backdrop-filter: $blur-sm;
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: $spacing-md;
+    color: $text-primary;
+  }
+  
+  p {
+    margin-bottom: $spacing-sm;
+    color: $text-secondary;
+  }
+  
+  a {
+    color: $text-accent;
+    text-decoration: none;
+    transition: $transition-base;
+    
+    &:hover {
+      color: $gold-accent-hover;
+      @include text-glow;
+    }
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: $border-radius-sm;
+  }
+  
+  @include mobile {
+    padding: $spacing-lg;
+    min-height: 120px;
+    max-height: 50vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.formActions {
+  display: flex;
+  gap: $spacing-lg;
+  justify-content: center;
+  margin-top: $spacing-lg;
+  
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-md;
+  }
+}
+
+.submitBtn {
+  @include button-primary;
+  flex: 1;
+  max-width: 250px;
+  position: relative;
+  
+  &:disabled {
+    @include button-disabled;
+    
+    &::before {
+      display: none;
+    }
+  }
+  
+  @include mobile {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.clearBtn {
+  @include button-secondary;
+  flex: 1;
+  max-width: 250px;
+  
+  &:disabled {
+    @include button-disabled;
+  }
+  
+  @include mobile {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.submitBtn:disabled {
+  .loading-spinner {
+    display: inline-block;
+  }
+}
+
+.input:focus,
+.textarea:focus {
+  transform: scale(1.01);
+}
+
+.formGroup:hover .label {
+  color: $text-accent;
+}
+
+@include mobile {
+  .tabs {
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+  
+  .tabBtn {
+    border-radius: $border-radius-sm;
+  }
+  
+  .formActions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .submitBtn,
+  .clearBtn {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .input,
+  .textarea {
+    font-size: 16px;
+  }
+}
+
+@include tablet {
+  .form {
+    padding: $spacing-xxl;
+  }
+  
+  .formActions {
+    gap: $spacing-xl;
+  }
+}
+
+.form {
+  @include scale-in;
+}
+
+.formGroup {
+  @include fade-in;
+  
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+}

@@ -1,0 +1,228 @@
+@import './variables';
+@import './mixins';
+
+.app {
+  min-height: 100vh;
+  background: $primary-gradient;
+  position: relative;
+  overflow-x: hidden;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(
+        circle at 20% 80%,
+        rgba(255, 215, 0, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(233, 69, 96, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 40% 40%,
+        rgba(22, 33, 62, 0.1) 0%,
+        transparent 50%
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+.header {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: $spacing-xxxl $spacing-lg $spacing-xxl;
+  @include fade-in;
+
+  @include mobile {
+    padding: $spacing-xxl $spacing-md $spacing-xl;
+  }
+}
+
+.title {
+  font-size: $font-size-display;
+  font-weight: $font-weight-bold;
+  margin-bottom: $spacing-md;
+  @include text-gradient;
+  @include text-glow;
+  letter-spacing: -0.02em;
+
+  @include mobile {
+    font-size: $font-size-xxxl;
+  }
+
+  @include tablet {
+    font-size: 3rem;
+  }
+}
+
+.subtitle {
+  font-size: $font-size-xl;
+  color: $text-secondary;
+  margin: 0;
+  font-weight: $font-weight-medium;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: $line-height-base;
+
+  @include mobile {
+    font-size: $font-size-large;
+  }
+}
+
+.main {
+  position: relative;
+  z-index: 10;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 64px;
+  padding: 0 $spacing-lg;
+
+  @include mobile {
+    padding: 0 $spacing-md;
+  }
+}
+
+.message {
+  margin-top: $spacing-xl;
+  padding: $spacing-lg $spacing-xl;
+  border-radius: $border-radius-lg;
+  font-weight: $font-weight-medium;
+  @include fade-in;
+  @include glass-card;
+  border: 1px solid transparent;
+
+  &.success {
+    background: $success-bg;
+    color: $success-color;
+    border-color: $success-border;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+
+    &::before {
+      content: '✓';
+      margin-right: $spacing-sm;
+      color: $success-color;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  &.error {
+    background: $error-bg;
+    color: $error-color;
+    border-color: $error-border;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+
+    &::before {
+      content: '✕';
+      margin-right: $spacing-sm;
+      color: $error-color;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  @include mobile {
+    padding: $spacing-md $spacing-lg;
+    margin-top: $spacing-lg;
+  }
+}
+
+.exampleSection {
+  margin-top: $spacing-xxxl;
+  @include slide-up;
+
+  @include mobile {
+    margin-top: $spacing-xxl;
+  }
+}
+
+.exampleTitle {
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+  font-size: $font-size-xxl;
+  font-weight: $font-weight-semibold;
+  @include text-gradient;
+
+  @include mobile {
+    font-size: $font-size-xl;
+  }
+}
+
+.exampleCode {
+  @include glass-card;
+  font-family: $font-family-mono;
+  font-size: $font-size-small;
+  color: $text-secondary;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  line-height: 1.6;
+  border: 1px solid $border-color;
+  position: relative;
+
+  @include mobile {
+    font-size: 0.8rem;
+    padding: $spacing-md;
+  }
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $border-color;
+  border-radius: 50%;
+  border-top-color: $gold-accent;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: $spacing-sm;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@include mobile {
+  .main {
+    padding: 0 $spacing-sm;
+  }
+
+  .header {
+    padding: $spacing-xl $spacing-sm $spacing-lg;
+  }
+}
+
+@include tablet {
+  .main {
+    max-width: 800px;
+  }
+}
+
+@include desktop {
+  .main {
+    max-width: 1000px;
+  }
+}
