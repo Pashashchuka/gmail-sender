@@ -29,6 +29,13 @@ function App() {
   return (
     <div className={styles.app}>
       <header className={styles.header}>
+        <div className={styles.logoContainer}>
+          <img
+            className={styles.logo}
+            alt="Gmail Sender Logo"
+            src="/favicon.svg"
+          />
+        </div>
         <h1 className={`app-h1 ${styles.title}`}>{UI_TEXT.TITLE}</h1>
         <p className={`app-p ${styles.subtitle}`}>{UI_TEXT.SUBTITLE}</p>
       </header>

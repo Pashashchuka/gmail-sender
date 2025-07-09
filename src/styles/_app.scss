@@ -63,6 +63,28 @@
   }
 }
 
+.logoContainer {
+  position: absolute;
+  top: $spacing-xl;
+  left: $spacing-xl;
+  z-index: 20;
+
+  @include mobile {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: $shadow-lg;
+  transition: $transition-base;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
 .title {
   font-size: $font-size-display;
   font-weight: $font-weight-bold;

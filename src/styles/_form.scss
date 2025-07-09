@@ -118,6 +118,7 @@
     color: $primary-color;
     box-shadow: $shadow-md;
     font-weight: $font-weight-semibold;
+    border-radius: $border-radius-md;
     
     &::before {
       display: none;
@@ -125,7 +126,6 @@
   }
   
   @include mobile {
-    border-radius: $border-radius-sm;
     padding: $spacing-sm $spacing-md;
   }
 }
