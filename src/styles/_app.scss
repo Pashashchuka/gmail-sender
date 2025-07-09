@@ -138,6 +138,9 @@
   @include glass-card;
   border: 1px solid transparent;
   position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  opacity: 1;
 
   &.success {
     background: $success-bg;
@@ -165,6 +168,12 @@
       color: $error-color;
       font-weight: $font-weight-bold;
     }
+  }
+
+  &.closing {
+    transform: translateY(-20px);
+    opacity: 0;
+    pointer-events: none;
   }
 
   @include mobile {
