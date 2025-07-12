@@ -332,29 +332,7 @@
   }
 }
 
-.noteMessage {
-  color: $gold-accent;
-  font-size: $font-size-small;
-  font-weight: $font-weight-medium;
-  padding: $spacing-xs $spacing-sm;
-  background: rgba(255, 215, 0, 0.1);
-  border-radius: $border-radius-sm;
-  border-left: 3px solid $gold-accent;
-  @include fade-in;
-  animation: slideIn 0.3s ease-out;
-
-  &::before {
-    content: '!';
-    margin-right: $spacing-xs;
-    font-size: $font-size-base;
-  }
-
-  @include mobile {
-    font-size: 0.8rem;
-    padding: $spacing-xs;
-  }
-}
-
+.noteMessage,
 .errorMessage {
   color: $error-color;
   font-size: $font-size-small;
@@ -377,6 +355,12 @@
     font-size: 0.8rem;
     padding: $spacing-xs;
   }
+}
+
+.noteMessage {
+  color: $gold-accent;
+  background: rgba(255, 215, 0, 0.1);
+  border-left: 3px solid $gold-accent;
 }
 
 @keyframes slideIn {
