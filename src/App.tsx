@@ -96,16 +96,21 @@ function App() {
                 id="htmlContent"
               />
             ) : (
-              <div className={styles.previewContainer}>
-                <div
-                  className={styles.preview}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      formData.htmlContent ||
-                      ERROR_MESSAGES.PREVIEW_PLACEHOLDER,
-                  }}
-                />
-              </div>
+              <>
+                <div className={styles.noteMessage}>
+                  {ERROR_MESSAGES.PREVIEW_NOTE}
+                </div>
+                <div className={styles.previewContainer}>
+                  <div
+                    className={styles.preview}
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        formData.htmlContent ||
+                        ERROR_MESSAGES.PREVIEW_PLACEHOLDER,
+                    }}
+                  />
+                </div>
+              </>
             )}
             {errors.htmlContent && (
               <div className={styles.errorMessage}>{errors.htmlContent}</div>
