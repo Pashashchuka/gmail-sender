@@ -20,6 +20,7 @@ export const ERROR_MESSAGES = {
   SEND_ERROR: 'Error sending email. Please try again.',
   PREVIEW_PLACEHOLDER:
     '<p style="color: #999;">Preview will appear here...</p>',
+  PREVIEW_NOTE: 'The preview result does not always match the real email.',
 } as const;
 
 export const SUCCESS_MESSAGES = {
