@@ -131,6 +131,12 @@
   box-shadow: $shadow-neumorph-inset;
 }
 
+@mixin neumorph-inset-light {
+  background: $bg-card-light;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-neumorph-inset-light;
+}
+
 @mixin fade-in {
   animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
