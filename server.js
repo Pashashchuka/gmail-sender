@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
 app.post('/send-email', async (req, res) => {
   try {
-    const { to, subject, htmlContent } = req.body;
+    const { subject, htmlContent } = req.body;
 
     const recipientEmail = process.env.EMAIL_USER || 'your-email@gmail.com';
     

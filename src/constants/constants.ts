@@ -19,8 +19,8 @@ export const ERROR_MESSAGES = {
   REQUIRED_SUBJECT: 'Please enter a subject for your email.',
   SEND_ERROR: 'Error sending email. Please try again.',
   PREVIEW_PLACEHOLDER: `
-      <p style="font-size: 0.8em; color: rgba(255, 255, 255, 0.8); margin: 50px; text-align: center;">
-        Nothing to preview, <span style="color: #ffd700;">enter HTML</span> content to see the result.
+      <p style="font-size: 0.8em; color: var(--text-secondary); margin: 50px; text-align: center;">
+        Nothing to preview, <span style="color: var(--text-accent)">enter HTML</span> content to see the result.
       </p>`,
   PREVIEW_NOTE: 'The preview result does not always match the real email.',
 } as const;

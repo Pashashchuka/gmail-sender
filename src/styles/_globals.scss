@@ -1,5 +1,19 @@
 @import './variables';
 
+:root {
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-accent: #{$text-accent};
+  --text-muted: #{$text-muted};
+}
+
+body[data-theme="light"] {
+  --text-primary: #{$text-primary-light};
+  --text-secondary: #{$text-secondary-light};
+  --text-accent: #{$text-accent-light};
+  --text-muted: #{$text-muted-light};
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,6 +23,34 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent !important;
+    width: 0 !important;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent !important;
+    border-radius: 0 !important;
+    width: 0 !important;
+    &:hover {
+      background: transparent !important;
+    }
+    &:active {
+      background: transparent !important;
+    }
+  }
+  &::-webkit-scrollbar-corner {
+    background: transparent !important;
+  }
+  
+  /* Firefox */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 body {
@@ -20,20 +62,50 @@ body {
   color: $text-primary;
   line-height: $line-height-base;
   overflow-x: hidden;
+  transition: $transition-base;
   
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  &::-webkit-scrollbar-track {
-    background: $bg-card;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: $border-color;
-    border-radius: 4px;
-    &:hover {
-      background: $text-muted;
+  &[data-theme="light"] {
+    background: $bg-light;
+    color: $text-primary-light;
+    
+    &::-webkit-scrollbar-track {
+      background: $bg-card-light;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $border-color-light;
+      &:hover {
+        background: $text-muted-light;
+      }
     }
   }
+  
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent !important;
+    width: 0 !important;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent !important;
+    border-radius: 0 !important;
+    width: 0 !important;
+    &:hover {
+      background: transparent !important;
+    }
+    &:active {
+      background: transparent !important;
+    }
+  }
+  &::-webkit-scrollbar-corner {
+    background: transparent !important;
+  }
+  
+  /* Firefox */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 .app-h1 {
@@ -43,22 +115,42 @@ body {
   font-weight: $font-weight-bold;
   line-height: $line-height-tight;
   letter-spacing: -0.025em;
+  
+  body[data-theme="light"] & {
+    background: linear-gradient(135deg, $text-primary-light 0%, $text-secondary-light 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+  }
 }
 .app-h2 {
   font-size: $font-size-xxxl;
   color: $text-primary;
   font-weight: $font-weight-bold;
   line-height: $line-height-tight;
+  
+  body[data-theme="light"] & {
+    color: $text-primary-light;
+  }
 }
 .app-h3 {
   font-size: $font-size-xxl;
   color: $text-secondary;
   font-weight: $font-weight-bold;
   line-height: $line-height-tight;
+  
+  body[data-theme="light"] & {
+    color: $text-secondary-light;
+  }
 }
 .app-p {
   color: $text-secondary;
   margin: 0;
+  
+  body[data-theme="light"] & {
+    color: $text-secondary-light;
+  }
 }
 .app-link {
   text-decoration: none;
@@ -68,6 +160,14 @@ body {
     color: $gold-accent-hover;
     @include text-glow;
   }
+  
+  body[data-theme="light"] & {
+    color: $text-accent-light;
+    &:hover {
+      color: $gold-accent;
+      text-shadow: none;
+    }
+  }
 }
 .app-code {
   font-family: $font-family-mono;
@@ -76,6 +176,11 @@ body {
   border-radius: $border-radius-sm;
   font-size: 0.875em;
   color: $text-accent;
+  
+  body[data-theme="light"] & {
+    background: $bg-card-light;
+    color: $text-accent-light;
+  }
 }
 .app-pre {
   font-family: $font-family-mono;
@@ -88,6 +193,14 @@ body {
     background: none;
     padding: 0;
     color: $text-secondary;
+  }
+  
+  body[data-theme="light"] & {
+    background: $bg-card-light;
+    border-color: $border-color-light;
+    code {
+      color: $text-secondary-light;
+    }
   }
 }
 .app-ul, .app-ol {
@@ -110,9 +223,24 @@ body {
   color: $text-primary;
 }
 
+body[data-theme="light"] {
+  ::selection {
+    background: rgba(248, 214, 109, 0.3);
+    color: $text-primary-light;
+  }
+  ::-moz-selection {
+    background: rgba(248, 214, 109, 0.3);
+    color: $text-primary-light;
+  }
+}
+
 *:focus {
   outline: 2px solid $border-focus;
   outline-offset: 2px;
+}
+
+body[data-theme="light"] *:focus {
+  outline-color: $border-focus-light;
 }
 
 .sr-only {
@@ -131,9 +259,20 @@ body {
 }
 .glass {
   @include glass-effect;
+  
+  body[data-theme="light"] & {
+    background: $bg-card-light;
+    border: 1px solid $border-color-light;
+    box-shadow: $shadow-md-light;
+  }
 }
 .neumorph {
   @include neumorph;
+  
+  body[data-theme="light"] & {
+    background: $bg-card-light;
+    box-shadow: $shadow-md-light;
+  }
 }
 .fade-in {
   @include fade-in;

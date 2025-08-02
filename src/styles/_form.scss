@@ -12,6 +12,12 @@
     gap: $spacing-lg;
     padding: $spacing-lg;
   }
+  
+  body[data-theme="light"] & {
+    background: $bg-card-light;
+    border: 1px solid $border-color-light;
+    box-shadow: $shadow-lg-light;
+  }
 }
 
 .formGroup {
@@ -35,6 +41,14 @@
     background: $gold-accent;
     border-radius: 50%;
     display: inline-block;
+  }
+  
+  body[data-theme="light"] & {
+    color: $text-primary-light;
+    
+    &::before {
+      background: $text-accent-light;
+    }
   }
 }
 
@@ -63,6 +77,33 @@
       box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
     }
   }
+  
+  body[data-theme="light"] & {
+    @include neumorph-inset-light;
+    color: $text-primary-light;
+    border: 1px solid $border-color-light;
+    
+    &::placeholder {
+      color: $text-muted-light;
+    }
+    
+    &:focus {
+      border-color: $border-focus-light;
+      box-shadow: 0 0 0 3px rgba(248, 214, 109, 0.2);
+      background: $bg-card-light;
+    }
+    
+    &:hover {
+      border-color: $border-hover-light;
+    }
+    
+    &.inputError,
+    &.textareaError {
+      border-color: $error-color;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+      background: rgba(239, 68, 68, 0.05);
+    }
+  }
 }
 
 .textarea {
@@ -87,6 +128,11 @@
   @include mobile {
     flex-direction: column;
     gap: 0;
+  }
+  
+  body[data-theme="light"] & {
+    background: $bg-card-light;
+    box-shadow: $shadow-md-light;
   }
 }
 
@@ -144,6 +190,22 @@
       display: none;
     }
   }
+  
+  body[data-theme="light"] & {
+    color: $tab-text-inactive-light;
+    background: $tab-inactive-light;
+    
+    &:hover {
+      color: $text-primary-light;
+      background: rgba(0, 0, 0, 0.03);
+    }
+    
+    &.active {
+      background: $tab-active-light;
+      color: $text-primary-light;
+      box-shadow: $shadow-sm-light;
+    }
+  }
 
   @include mobile {
     padding: $spacing-sm $spacing-md;
@@ -159,6 +221,12 @@
 
   @include mobile {
     min-height: 120px;
+  }
+  
+  body[data-theme="light"] & {
+    background: $bg-card-light;
+    border: 1px solid $border-color-light;
+    box-shadow: $shadow-md-light;
   }
 }
 
@@ -204,6 +272,28 @@
     height: auto;
     border-radius: $border-radius-sm;
   }
+  
+  body[data-theme="light"] & {
+    @include neumorph-inset-light;
+    color: $text-primary-light;
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: $text-primary-light;
+    }
+    
+    p {
+      color: $text-secondary-light;
+    }
+    
+    a {
+      color: $text-accent-light;
+      
+      &:hover {
+        color: $gold-accent;
+        text-shadow: none;
+      }
+    }
+  }
 
   @include mobile {
     padding: $spacing-lg;
@@ -240,6 +330,17 @@
       display: none;
     }
   }
+  
+  body[data-theme="light"] & {
+    background: $btn-primary-light;
+    color: $text-primary-light;
+    box-shadow: $shadow-sm-light;
+    
+    &:hover:not(:disabled) {
+      background: $btn-primary-hover-light;
+      box-shadow: $shadow-md-light;
+    }
+  }
 
   @include mobile {
     max-width: 100%;
@@ -254,6 +355,18 @@
 
   &:disabled {
     @include button-disabled;
+  }
+  
+  body[data-theme="light"] & {
+    background: $btn-secondary-light;
+    color: $text-primary-light;
+    border: 1px solid $border-color-light;
+    box-shadow: $shadow-sm-light;
+    
+    &:hover:not(:disabled) {
+      background: $btn-secondary-hover-light;
+      box-shadow: $shadow-md-light;
+    }
   }
 
   @include mobile {
@@ -275,6 +388,10 @@
 
 .formGroup:hover .label {
   color: $text-accent;
+  
+  body[data-theme="light"] & {
+    color: $text-accent-light;
+  }
 }
 
 @include mobile {
@@ -361,6 +478,12 @@
   color: $gold-accent;
   background: rgba(255, 215, 0, 0.1);
   border-left: 3px solid $gold-accent;
+  
+  body[data-theme="light"] & {
+    color: $warning-text-light;
+    background: $warning-bg-light;
+    border-left-color: $warning-text-light;
+  }
 }
 
 @keyframes slideIn {

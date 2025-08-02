@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './styles/App.module.scss';
+import { ThemeToggle } from './components/theme-toggle';
 import {
   useCopyToClipboard,
   useEmailSender,
@@ -14,6 +14,8 @@ import {
   EXAMPLE_HTML,
   UI_TEXT,
 } from './constants';
+
+import styles from './styles/App.module.scss';
 
 function App() {
   const { formData, errors, handleInputChange, validateForm, clearForm } =
@@ -35,6 +37,7 @@ function App() {
 
   return (
     <div className={styles.app}>
+      <ThemeToggle />
       <header className={styles.header}>
         <div className={styles.logoContainer}>
           <img

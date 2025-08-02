@@ -6,6 +6,11 @@
   background: $primary-gradient;
   position: relative;
   overflow-x: hidden;
+  transition: $transition-base;
+
+  body[data-theme='light'] & {
+    background: $bg-light;
+  }
 
   &::before {
     content: '';
@@ -32,6 +37,25 @@
       );
     pointer-events: none;
     z-index: 0;
+
+    body[data-theme='light'] & {
+      background:
+        radial-gradient(
+          circle at 20% 80%,
+          rgba(248, 214, 109, 0.08) 0%,
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(255, 255, 255, 0.1) 0%,
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at 40% 40%,
+          rgba(230, 230, 230, 0.05) 0%,
+          transparent 50%
+        );
+    }
   }
 
   &::after {
@@ -48,6 +72,14 @@
     );
     pointer-events: none;
     z-index: 1;
+
+    body[data-theme='light'] & {
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.02) 100%
+      );
+    }
   }
 }
 
@@ -83,6 +115,10 @@
   box-shadow: $shadow-lg;
   transition: $transition-base;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+
+  body[data-theme='light'] & {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  }
 }
 
 .title {
@@ -100,6 +136,18 @@
   @include tablet {
     font-size: 3rem;
   }
+
+  body[data-theme='light'] & {
+    background: linear-gradient(
+      135deg,
+      $text-primary-light 0%,
+      $text-secondary-light 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+  }
 }
 
 .subtitle {
@@ -113,6 +161,10 @@
 
   @include mobile {
     font-size: $font-size-large;
+  }
+
+  body[data-theme='light'] & {
+    color: $text-secondary-light;
   }
 }
 
@@ -180,6 +232,34 @@
     padding: $spacing-md $spacing-lg;
     margin-top: $spacing-lg;
   }
+
+  body[data-theme='light'] & {
+    background: $bg-card-light;
+    border: 1px solid $border-color-light;
+    box-shadow: $shadow-md-light;
+
+    &.success {
+      background: $success-bg;
+      color: $success-color;
+      border-color: $success-border;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+
+      &::before {
+        color: $success-color;
+      }
+    }
+
+    &.error {
+      background: $error-bg;
+      color: $error-color;
+      border-color: $error-border;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+
+      &::before {
+        color: $error-color;
+      }
+    }
+  }
 }
 
 .closeButton {
@@ -211,6 +291,12 @@
     transform: scale(0.95);
   }
 
+  body[data-theme='light'] & {
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+
   @include mobile {
     top: $spacing-xs;
     right: $spacing-xs;
@@ -239,6 +325,18 @@
   @include mobile {
     font-size: $font-size-xl;
   }
+
+  body[data-theme='light'] & {
+    background: linear-gradient(
+      135deg,
+      $text-primary-light 0%,
+      $text-secondary-light 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+  }
 }
 
 .exampleCode {
@@ -257,6 +355,11 @@
     font-size: 0.8rem;
     padding: $spacing-md;
     padding-right: 30px;
+  }
+
+  body[data-theme='light'] & {
+    @include neumorph-inset-light;
+    color: $text-secondary-light;
   }
 }
 
@@ -297,6 +400,14 @@
     border-color: $success-border;
   }
 
+  body[data-theme='light'] & {
+    background: rgba(187, 186, 186, 0.215);
+
+    &:hover {
+      background: rgba(145, 144, 144, 0.215);
+    }
+  }
+
   @include mobile {
     top: $spacing-sm;
     right: $spacing-sm;
@@ -314,6 +425,11 @@
   border-top-color: $gold-accent;
   animation: spin 1s ease-in-out infinite;
   margin-right: $spacing-sm;
+
+  body[data-theme='light'] & {
+    border-color: $border-color-light;
+    border-top-color: $text-accent-light;
+  }
 }
 
 @keyframes spin {
